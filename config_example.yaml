@@ -1,0 +1,90 @@
+# see: https://github.com/Dreamacro/clash/wiki/configuration
+
+external-controller: 0.0.0.0:9090
+external-ui: /opt/clash/ui
+secret: "MyPassword"
+
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+
+mode: rule
+ipv6: false
+allow-lan: true
+log-level: info
+
+dns:
+  enable: true
+  ipv6: false
+  listen: 0.0.0.0:53
+  default-nameserver:
+    - 114.114.114.114
+    - 8.8.8.8
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  nameserver:
+    - 114.114.114.114
+    - 223.5.5.5
+    - 8.8.8.8
+    - tls://dns.rubyfish.cn:853 # DNS over TLS
+    - https://1.1.1.1/dns-query # DNS over HTTPS
+    - dhcp://en0 # dns from dhcp
+
+proxies:
+  - name: "ss1"
+    type: ss
+    server: xxx.com
+    port: 12345
+    cipher: aes-256-gcm
+    password: xyz
+    udp: true
+    tls: true
+  - name: "ss2"
+    type: ss
+    server: yyy.com
+    port: 12345
+    cipher: aes-256-gcm
+    password: xyz
+  - name: "vmess3"
+    type: vmess
+    server: zzz.com
+    port: 12345
+    uuid: abcd-efg
+    alterId: 0
+    cipher: auto
+    udp: true
+
+proxy-groups:
+  - name: "auto"
+    type: url-test
+    proxies:
+      - ss1
+      - ss2
+      - vmess3
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+
+  - name: Proxy
+    type: select
+    proxies:
+      - ss1
+      - ss2
+      - vmess3
+      - vmess4
+      - vmess5
+      - auto
+
+rules:
+  # - DOMAIN-SUFFIX,google.com,auto
+  # - DOMAIN-KEYWORD,google,auto
+  # - DOMAIN,google.com,auto
+  # - DOMAIN-SUFFIX,ad.com,REJECT
+  - SRC-IP-CIDR,192.168.1.201/32,DIRECT
+  # optional param "no-resolve" for IP rules (GEOIP, IP-CIDR, IP-CIDR6)
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - GEOIP,CN,DIRECT
+  - DST-PORT,80,DIRECT
+  - SRC-PORT,7777,DIRECT
+  # - RULE-SET,apple,REJECT # Premium only
+  - MATCH,auto

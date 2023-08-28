@@ -1,0 +1,11 @@
+[Unit]
+Description=Clash Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/opt/clash/start.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target
