@@ -11,11 +11,15 @@ WIFI 热点 -> 有线网口 -> 路由器 -> 互联网
 3. 自动配置 Clash DNS，避免本地 systemd-resolved 或 dnsmasq 服务冲突
 4. 自动配置路由，可自定义修改
 
+# 硬件和系统
+
+树莓派 4B + Ubuntu Server 22 LTS (64bit)
+
 # 简单使用
 
-1. clone 仓库到本地，执行 download.sh 下载 clash 依赖
-2. 将文件拷贝到树莓派 /opt/clash 目录下
-3. 执行 init.sh 初始化树莓派
+1. clone 仓库到本机 (网络能下载 github 文件)，执行 `./download.sh` 下载 clash 依赖
+2. 将文件拷贝到树莓派 /opt/clash 目录下 `scp -r * remote_pi@pi_host:/opt/clash/`
+3. 执行 `./init.sh` 初始化树莓派配置，按提示填写信息即可
 
 # 注意！⚠️
 
