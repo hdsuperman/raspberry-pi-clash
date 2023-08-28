@@ -4,6 +4,8 @@ sudo iptables -t nat -L
 sudo netstat -tunpl | grep clash
 # 查看 53 端口占用
 sudo lsof -i :53
+
+# 退出 clash
 pkill -9 clash
 
 # 显示 WIFI 热点名称密码：
