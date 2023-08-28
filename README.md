@@ -20,12 +20,14 @@ WIFI 热点 -> 有线网口 -> 路由器 -> 互联网
 ## 简单使用
 
 1. clone 仓库到本机 (网络能下载 github 文件)，执行 `./download.sh` 下载 clash 等依赖
-2. 将当前目录下文件拷贝到树莓派 `/opt/clash` 目录下 `scp -r * remote_pi@pi_host:/opt/clash/`
-3. 执行 `./init.sh` 初始化树莓派配置，按提示填写信息即可
+2. 将账号信息填到 `config_example.yaml` 文件，重命名为 `config.yaml`
+3. 将当前目录下文件拷贝到树莓派 `/opt/clash` 目录下 `scp -r * remote_pi@pi_host:/opt/clash/`
+4. 执行 `./init.sh` 初始化树莓派配置，按提示填写信息即可
 
 ## 注意 ⚠️
 
-clash 启动 DNS 需要关闭 systemd-resolved 服务，如果需要 apt 安装更新依赖，关闭 clash，打开 systemd-resolved 再执行安装，原始 `/etc/resolv.conf` 文件备份在 `/etc/resolv.conf.bak`，如果需要恢复，执行
+clash 启动 DNS 需要关闭 systemd-resolved 服务，如果需要 apt 安装更新依赖，关闭 clash，打开 systemd-resolved
+再执行安装，原始 `/etc/resolv.conf` 文件备份在 `/etc/resolv.conf.bak`，如果需要恢复，执行
 
 ```shell
 sudo mv /etc/resolv.conf.bak /etc/resolv.conf
