@@ -24,6 +24,9 @@ WIFI 热点 -> 有线网口 -> 路由器 -> 互联网
 3. 将当前目录下文件拷贝到树莓派 `/opt/clash` 目录下 `scp -r * remote_pi@pi_host:/opt/clash/`
 4. 执行 `sudo ./init.sh` 初始化树莓派配置，按提示填写信息即可
 
+## 打开 Clash 控制台
+找到树莓派的 IP 地址，访问 `http://ip:9090` 即可打开控制台
+
 ## 注意 ⚠️
 
 clash 启动 DNS 需要关闭 systemd-resolved 服务，如果需要 apt 安装更新依赖，关闭 clash，打开 systemd-resolved
