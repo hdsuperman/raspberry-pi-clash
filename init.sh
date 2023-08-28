@@ -12,7 +12,7 @@ systemctl start systemd-resolved
 
 # 安装必要的网络管理工具
 apt-get update
-apt-get install network-manager net-tools
+apt-get install -y network-manager net-tools
 
 # 设置无线热点，使用 Hotspot 作为默认连接名
 nmcli dev wifi hotspot ifname wlan0 con-name Hotspot ssid "$hotspot_name" password "$hotspot_password"
